@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (isFirstTime) {
       //no possibility to go bak to splash screen
 
-      Get.off(() => const OnboardingScreen());
+      Get.off(() => /*const OnboardingScreen()*/ Principal());
       await prefs.setBool('first_time', false);
     } else {
       Get.off(() => Principal());
@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF00DBB7),
+              Colors.blueGrey,
               Color(0xFF081715),
             ],
           ),
@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Center(
           //logo here
           child: Image.asset(
-              'assets/images/logo.png'), // replace with your logo path
+              'assets/icons/brake_disc.png'), // replace with your logo path
         ));
   }
 }

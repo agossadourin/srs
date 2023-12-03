@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:srs/screens/page_a/page_a.dart';
-import 'package:srs/screens/splash_screen/page_1.dart';
+import 'package:srs/screens/page_b/page_b.dart';
+import 'package:srs/screens/page_c/page_c.dart';
 
 import '../../controllers/nav_controller.dart';
 
@@ -10,17 +11,49 @@ class Principal extends StatelessWidget {
 
   Principal({super.key});
 
+  final List<String> titles = [
+    'Accueil',
+    'Services',
+    'Ma voiture',
+    'chatBot',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Obx(() => Text(
+              titles[navController.selectedIndex.value],
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold),
+            )),
+        centerTitle: true,
+        backgroundColor: Colors.blueGrey,
+        // make AppBar background transparent
+        elevation: 5,
+        leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.menu,
+              color: Colors.white,
+            )),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Image(
+                image: AssetImage('assets/icons/Notifications.png')),
+          )
+        ],
+      ),
       body: Obx(() {
         switch (navController.selectedIndex.value) {
           case 0:
             return const PageA();
           case 1:
-            return Container(child: Center(child: Text('Page 2')));
+            return PageB();
           case 2:
-            return Container(child: Center(child: Text('Page 3')));
+            return PageC();
           case 3:
             return Container(child: Center(child: Text('Page 4')));
           default:
@@ -29,24 +62,28 @@ class Principal extends StatelessWidget {
       }),
       bottomNavigationBar: Obx(() => BottomNavigationBar(
             useLegacyColorScheme: false,
-            fixedColor: Colors.black,
+            fixedColor: Colors.white,
             currentIndex: navController.selectedIndex.value,
             onTap: (index) => navController.changeIndex(index),
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.search),
-                  label: 'Search',
+                  icon: Icon(Icons.home),
+                  label: 'Acceuil',
                   backgroundColor: Colors.blueGrey),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: 'Profile',
-                  backgroundColor: Colors.lightBlue),
+                  icon: Icon(Icons.search),
+                  label: 'Services',
+                  backgroundColor: Colors.blueGrey),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.settings), label: 'Settings'),
+                icon: Icon(Icons.car_rental),
+                label: 'Ma voiture',
+                backgroundColor: Colors.blueGrey,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.chat),
+                label: 'Chat',
+                backgroundColor: Colors.blueGrey,
+              ),
             ],
           )),
     );
