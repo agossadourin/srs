@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:srs/data/services/api.dart';
 import 'package:srs/widgets/rect_action_button.dart';
 import 'package:srs/widgets/infraction_item.dart';
 
@@ -141,30 +142,50 @@ class PageA extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
           ),
-          const Wrap(
+          Wrap(
             spacing: 10,
             runSpacing: 10,
             children: [
-              InfractionItem(
-                  title: "Excès",
-                  iconUrl: "assets/icons/speeding.png",
-                  count: 3,
-                  isSelected: false),
-              InfractionItem(
-                  title: "Usage. tel",
-                  iconUrl: "assets/icons/no_phone.png",
-                  count: 5,
-                  isSelected: false),
-              InfractionItem(
-                  title: "Dépassement interdit",
-                  iconUrl: "assets/icons/no_overtaking.png",
-                  count: 9,
-                  isSelected: false),
-              InfractionItem(
-                  title: "Usage. tel",
-                  iconUrl: "assets/icons/distance.png",
-                  count: 9,
-                  isSelected: false),
+              GestureDetector(
+                onTap: () async {
+                  playFongbe("exces", 3);
+                },
+                child: const InfractionItem(
+                    title: "Excès",
+                    iconUrl: "assets/icons/speeding.png",
+                    count: 3,
+                    isSelected: false),
+              ),
+              GestureDetector(
+                onTap: () async {
+                  playFongbe("phone", 5);
+                },
+                child: const InfractionItem(
+                    title: "Usage. tel",
+                    iconUrl: "assets/icons/no_phone.png",
+                    count: 5,
+                    isSelected: false),
+              ),
+              GestureDetector(
+                onTap: () async {
+                  playFongbe("depassement", 9);
+                },
+                child: const InfractionItem(
+                    title: "Dépassement interdit",
+                    iconUrl: "assets/icons/no_overtaking.png",
+                    count: 9,
+                    isSelected: false),
+              ),
+              GestureDetector(
+                onTap: () async {
+                  playFongbe("dist_securite", 9);
+                },
+                child: const InfractionItem(
+                    title: "Dist. sécurité",
+                    iconUrl: "assets/icons/distance.png",
+                    count: 9,
+                    isSelected: false),
+              ),
             ],
           ),
           SizedBox(
